@@ -2,17 +2,23 @@ import { Component, OnInit } from '@angular/core';
 
 import { Recipe } from '../recipe';
 import { RecipeItemComponent } from './recipe-item.component';
+import { RecipeService } from "../recipe.service";
 
 @Component({
+
   selector: 'rb-recipe-list',
   templateUrl: './recipe-list.component.html'
 })
 export class RecipeListComponent implements OnInit {
-	recipes: Recipe[] = [];
-	recipe = new Recipe('Dummy', 'Dummy', 'https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w300-rw')
-  constructor() { }
+  recipes: Recipe[] = [];
+
+
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
+		this.recipes = this.recipeService.getRecipes();
   }
+
+
 
 }
